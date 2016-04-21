@@ -64,6 +64,9 @@ class Home(resource.Resource):
         self.local_items = local_items
 
     def render_GET(self, txrequest):
+        txrequest.setHeader('Access-Control-Allow-Origin', '*')
+        txrequest.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE')
+        txrequest.setHeader('Access-Control-Allow-Headers',' X-Requested-With')
         vars = {
             'projects': ', '.join(self.root.scheduler.list_projects()),
         }
@@ -105,6 +108,9 @@ class Jobs(resource.Resource):
         self.local_items = local_items
 
     def render(self, txrequest):
+        txrequest.setHeader('Access-Control-Allow-Origin', '*')
+        txrequest.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE')
+        txrequest.setHeader('Access-Control-Allow-Headers',' X-Requested-With')
         cols = 6
         s = "<html><head><title>Scrapyd</title></head>"
         s += "<body>"
