@@ -41,12 +41,18 @@ class Root(resource.Resource):
     #     super(resource.Resource, self).render_GET(txrequest)
 
     def getChild(self, name, request):
+        print('in the getchild function')
+        print('in the getchild function')
+        print('in the getchild function')
+        print('in the getchild function')
+        print('in the getchild function')
         request.setHeader('Access-Control-Allow-Origin', '*')
-        txrequest.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE')
-        txrequest.setHeader('Access-Control-Allow-Headers',' X-Requested-With')
+        request.setHeader('Access-Control-Allow-Methods',
+                          'GET, POST, PATCH, PUT, DELETE')
+        request.setHeader('Access-Control-Allow-Headers', ' X-Requested-With')
         if name == '':
             return self
-        return Resource.getChild(self, name, request)
+        return resource.Resource.getChild(self, name, request)
 
     def update_projects(self):
         self.poller.update_projects()
