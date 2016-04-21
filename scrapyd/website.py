@@ -34,6 +34,12 @@ class Root(resource.Resource):
           self.putChild(servName, servCls(self))
         self.update_projects()
 
+    def render_GET(self, txrequest):
+        txrequest.setHeader('Access-Control-Allow-Origin', '*')
+        txrequest.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE')
+        txrequest.setHeader('Access-Control-Allow-Headers',' X-Requested-With')
+        super(resource.Resource, self).render_GET(txrequest)
+
     def update_projects(self):
         self.poller.update_projects()
         self.scheduler.update_projects()
